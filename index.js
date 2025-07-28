@@ -28,11 +28,12 @@ app.post("/getstream/token", async (req, res) => {
   }
   try {
     // Optionally, you can set validity_in_seconds (default: 1 hour)
-    const validity = 60 * 60; // 1 hour
+    const validity = 60 * 60 * 24; // 1 hour
     const token = streamClient.generateUserToken({
       user_id: userId,
       validity_in_seconds: validity,
     });
+    console.log(userId, token);
     return res.json({ token });
   } catch (error) {
     console.error("Error generating token:", error);
